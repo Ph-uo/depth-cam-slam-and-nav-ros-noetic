@@ -1,0 +1,17 @@
+{
+    "configurations": [
+
+        {
+            "name": "ROS: Launch",
+            "request": "launch",
+            "target": "/home/rack/a3test/src/slam/launch/slam_slamtoolbox.launch",
+            "launch": [
+                "rviz",
+                "gz",
+                "gzclient",
+                "gzserver"
+            ],
+            "type": "ros"
+        }
+    ]
+}

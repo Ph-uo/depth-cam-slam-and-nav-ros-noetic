@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Arguments: Các tham số đầu vào -->
+  <arg name="scan_topic"     default="/scan"/> <!-- Chủ đề (topic) của dữ liệu scan laser, mặc định là /scan -->
+  <arg name="initial_pose_x" default="0.0" />  <!-- Vị trí ban đầu của robot theo trục x -->
+  <arg name="initial_pose_y" default="0.0"/>   <!-- Vị trí ban đầu của robot theo trục y -->
+  <arg name="initial_pose_a" default="0.0"/>   <!-- Góc quay ban đầu (định hướng) của robot -->
+
+    <!-- Các tham số liên quan đến số lượng hạt trong thuật toán AMCL -->
+    <param name="min_particles" value="500"/>  <!-- Số lượng hạt tối thiểu, ảnh hưởng đến độ chính xác -->
+    <param name="max_particles" value="2000"/> <!-- Số lượng hạt tối đa, ảnh hưởng đến hiệu suất và độ chính xác -->
+
+  <!-- Node AMCL: Chạy node AMCL trong ROS -->
+  <node pkg="amcl" type="amcl" name="amcl">
+
+    <!-- Tham số liên quan đến việc tái mẫu (resampling) hạt dựa trên sai số của cảm biến -->
+    <param name="kld_err" value="0.01"/>  <!-- Sai số cho phép trong mô hình đo đạc (giúp cập nhật hạt khi sai số quá lớn) -->
+    <param name="kld_z" value="0.99"/>    <!-- Giá trị ngưỡng cho phép khi đo lường độ chính xác của mô hình -->
+
+    <!-- Các tham số để điều chỉnh khi nào thuật toán cập nhật vị trí robot -->
+    <param name="update_min_d" value="0.2"/>  <!-- Khoảng cách di chuyển tối thiểu để cập nhật vị trí, tránh cập nhật khi robot không di chuyển nhiều -->
+    <param name="update_min_a" value="0.523"/> <!-- Góc di chuyển tối thiểu để cập nhật vị trí (0.523 rad = 30 độ) -->
+
+    <!-- Các tham số khác -->
+    <param name="resample_interval" value="1"/> <!-- Thời gian (giây) giữa các lần tái mẫu -->
+    <param name="transform_tolerance" value="0.5"/> <!-- Thời gian chờ để tính toán phép biến đổi -->
+    <param name="recovery_alpha_slow" value="0.00"/>  <!-- Tốc độ phục hồi (khi có lỗi) - giá trị chậm -->
+    <param name="recovery_alpha_fast" value="0.00"/>  <!-- Tốc độ phục hồi (khi có lỗi) - giá trị nhanh -->
+    <param name="initial_pose_x" value="$(arg initial_pose_x)"/> <!-- Vị trí x ban đầu của robot từ tham số đầu vào -->
+    <param name="initial_pose_y" value="$(arg initial_pose_y)"/> <!-- Vị trí y ban đầu của robot từ tham số đầu vào -->
+    <param name="initial_pose_a" value="$(arg initial_pose_a)"/> <!-- Góc quay ban đầu của robot từ tham số đầu vào -->
+    <param name="gui_publish_rate" value="10.0"/> <!-- Tần suất xuất bản thông tin giao diện người dùng (GUI) -->
+
+    <!-- Chuyển tiếp (remap) chủ đề scan -->
+    <remap from="scan" to="$(arg scan_topic)"/> <!-- Điều này cho phép đổi tên chủ đề scan nếu cần thiết -->
+
+    <!-- Các tham số liên quan đến cảm biến laser -->
+    <param name="laser_max_range" value="8"/>  <!-- Khoảng cách tối đa mà cảm biến laser có thể đo được (m) -->
+    <param name="laser_max_beams" value="60"/> <!-- Số lượng tia laser mà cảm biến có thể phát ra -->
+    <param name="laser_z_hit" value="0.95"/>   <!-- Xác suất đo đúng của cảm biến laser (probability of hit) -->
+    <param name="laser_z_short" value="0.1"/>  <!-- Xác suất phát hiện vật thể ngắn không đúng -->
+    <param name="laser_z_max" value="0.05"/>   <!-- Xác suất đo vật thể quá xa -->
+    <param name="laser_z_rand" value="0.05"/>  <!-- Xác suất phát hiện vật thể ngẫu nhiên -->
+    <param name="laser_sigma_hit" value="0.2 "/> <!-- Độ lệch chuẩn của tín hiệu khi cảm biến đo đúng -->
+    <param name="laser_lambda_short" value="0.1"/> <!-- Đặc tính của vật thể ngắn khi cảm biến phát hiện -->
+    <param name="laser_likelihood_max_dist" value="2.0"/> <!-- Khoảng cách tối đa mà cảm biến laser có thể tin cậy -->
+    <param name="laser_model_type" value="likelihood_field"/> <!-- Mô hình xác suất của laser (Likelihood Field Model) -->
+
+    <!-- Tham số mới trong navigation 1.4.2 -->
+    <param name="use_map_topic" value="true"/> <!-- Khi được bật, AMCL sẽ sử dụng chủ đề map thay vì dịch vụ để nhận bản đồ -->
+
+    <!-- Các tham số về mô hình odo của robot -->
+    <param name="odom_model_type" value="diff"/> <!-- Kiểu mô hình odo của robot (mô hình khác nhau có thể là "diff" cho các robot di chuyển di chuyển theo kiểu bánh xe) -->
+
+    <!-- Các tham số liên quan đến độ chính xác của dự đoán chuyển động của robot -->
+    <param name="odom_alpha1" value="0.2"/>   <!-- Độ tin cậy vào chuyển động theo trục x -->
+    <param name="odom_alpha2" value="0.2"/>   <!-- Độ tin cậy vào chuyển động theo trục y -->
+    <param name="odom_alpha3" value="0.2"/>   <!-- Độ tin cậy vào chuyển động quay -->
+    <param name="odom_alpha4" value="0.2"/>   <!-- Độ tin cậy vào chuyển động tổng thể -->
+
+    <!-- Các tham số về khung tọa độ của robot và hệ thống định vị -->
+    <param name="odom_frame_id" value="odom"/> <!-- Tên của khung tọa độ cho odometry -->
+    <param name="base_frame_id" value="base_link"/> <!-- Tên của khung tọa độ của robot -->
+    <param name="global_frame_id" value="map"/> <!-- Tên của khung tọa độ toàn cục (bản đồ) -->
+
+  </node>
+</launch>
+

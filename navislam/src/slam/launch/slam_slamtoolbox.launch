@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<!-- frame and tf -->
+<!-- <include file="$(find slam)/launch/frame.launch"/>  -->
+
+<!-- <node pkg="slam" name="transform" type="baselink_to_odom.py"/>  -->
+
+<!--  <arg name="robot_description" default="$(find robot_model)/urdf/robot.urdf.xacro" />  -->
+
+<!--slam toolbox-->
+    <!-- Parameters for SLAM Toolbox 
+    <arg name="slam_params_file" default="$(find slam)/config/my_param.yaml"/>--> <!-- sync --> 
+    
+    <!-- SLAM Toolbox node -->
+    <node pkg="slam_toolbox" type="sync_slam_toolbox_node" name="slam_toolbox" output="screen">
+        <rosparam command="load" file="$(find slam)/config/my_param.yaml" />
+    </node>
+
+    <!-- move_base -->
+    <include file="$(find navigation_pkg)/launch/move_base.launch"/>
+    <!-- move_base -->
+    <include file="$(find robot_model)/launch/gazebo.launch"/>
+  
+
+<!-- Rviz-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find slam)config/slam.rviz"/>
+
+
+</launch>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+    
+
+<!-- ======================================= Model include  ====================================-->
+
+
+
+
+
+
+
+<!-- Wheel -->
+<xacro:include filename="$(find robot_model)/urdf/model/wheel/wheel.xacro"/>
+<xacro:include filename="$(find robot_model)/urdf/model/base/base_link.xacro"/>
+<xacro:include filename="$(find robot_model)/urdf/model/lidar/lidar.xacro"/>
+<xacro:include filename="$(find robot_model)/urdf/model/kinect/kinect.xacro"/>
+
+
+<xacro:include filename="$(find robot_model)/urdf/gazebo/base/base.xacro"/>
+
+<xacro:include filename="$(find robot_model)/urdf/gazebo/wheel/wheel.xacro"/>
+
+
+<xacro:include filename="$(find robot_model)/urdf/plugin/control_plugin/control_plugin.xacro"/>
+
+<xacro:include filename="$(find robot_model)/urdf/plugin/lidar_plugin/lidar_plugin.xacro"/>
+
+<xacro:include filename="$(find robot_model)/urdf/plugin/kinect_plugin/kinect_plugin.xacro"/>
+
+
+<xacro:gazebo_base/>
+
+<xacro:gazebo_wheel/>
+
+  <!-- Wheel -->
+<xacro:wheel1/>
+<xacro:wheel2/>
+<xacro:wheel3/>
+<xacro:wheel4/>
+
+<xacro:base_link/>
+<xacro:lidar/>
+<xacro:kinect/>
+
+</robot>

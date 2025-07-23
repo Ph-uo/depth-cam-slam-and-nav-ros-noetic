@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot>
+<!--  ++++++++++++++++++ Skid Steer plugin ++++++++++++++++++          /-->
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>20.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+    <leftRearJoint>back_left_wheel_joint</leftRearJoint>
+    <rightRearJoint>back_right_wheel_joint</rightRearJoint>
+    <wheelSeparation>0.55</wheelSeparation>
+    <wheelDiameter>0.2</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>20</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>true</broadcastTF>
+    <odometryTopic>odom</odometryTopic>  <!-- Topic that odometry will be published from gazebo "As the real robot is in it" -->
+    <odometryFrame>odom</odometryFrame>  <!-- The frame where we calcualte our odometry from -->
+  
+  </plugin>
+</gazebo>
+
+</robot>
+

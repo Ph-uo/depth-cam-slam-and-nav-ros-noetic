@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- kinect -->
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="depth_registration" value="true"/>
+    </include>
+
+  <!--lidar-->
+  <include file="/opt/ros/noetic/share/rplidar_ros/launch/rplidar_c1.launch">
+  </include>
+
+  <!--xoa data_base rtabmap-->
+<!-- <param name="delete_db_on_start" value="true" /> -->
+
+<!-- mo hinh xe rviz -->
+<param name="robot_description" command="xacro '$(find robot_model)/urdf/mecanum_xacro.xacro'"/>
+
+
+ <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+ </node>
+
+
+
+
+ <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+   <param name="use_gui" value="false"/> 
+  
+
+  <!-- frame and tf -->
+  <include file="$(find slam)/launch/frame.launch"/> 
+
+
+  <!-- move_base -->
+  <include file="$(find navigation_pkg)/launch/move_base.launch"/>
+
+
+
+
+  <!-- move_base -->
+  <!-- <include file="$(find robot_model)/launch/gazebo.launch"> 
+
+
+  
+   <arg name="arg_name" value="arg_value"/>
+  </include> -->
+  <!-- Cấu hình các đối số cần thiết -->
+  <!-- Chỉnh RTAB-Map -->
+
+  
+  <include file="$(find rtabmap_launch)/launch/rtabmap.launch">
+    <arg name="subscribe_scan" value="true"/>
+    <!-- <arg name="args" value="delete_db_on_start:=true"/> -->
+
+  </include>
+
+  <!--nhung toc do xuong arduino-->
+
+    <!-- <arg name="open_rviz" default="true"/> -->
+
+  <!-- <group if="$(arg open_rviz)"> -->
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d /home/deo/navislam/src/slam/config/rtab.rviz"/>
+  <!-- </group> -->
+
+</launch>

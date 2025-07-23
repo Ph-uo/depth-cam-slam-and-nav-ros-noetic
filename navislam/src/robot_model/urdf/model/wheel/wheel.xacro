@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="wheel1">
+
+
+        <link name="front_left_wheel_link">
+            <inertial>
+      <origin
+        xyz="-5.6447E-12 -2.486E-12 0.028039"
+        rpy="0 0 0" />
+      <mass
+        value="1.0708" />
+      <inertia
+        ixx="0.00091727"
+        ixy="-3.7968E-15"
+        ixz="-2.6709E-15"
+        iyy="0.00091727"
+        iyz="1.7171E-15"
+        izz="0.0017177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <cylinder length="0.055" radius="0.07"/>
+    </geometry>
+    </collision>
+  </link>
+ 
+ 
+        <joint name="front_left_wheel_joint" type="continuous">
+            <origin
+      xyz="0.11621 0.19638 -0.03025"
+               rpy="-1.5708 0 0" />
+            <parent link="base_link" />
+            <child link="front_left_wheel_link" />
+            <axis xyz="0 0 1" />
+            <dynamics damping="0" friction="0" />
+            <!-- <limit effort="100.0" velocity="10.0"/> -->
+        </joint>
+
+         </xacro:macro>
+         <xacro:macro name="wheel2">
+
+        <link name="front_right_wheel_link">
+           <inertial>
+      <origin
+        xyz="3.656E-12 -4.582E-12 -0.028039"
+        rpy="0 0 0" />
+      <mass
+        value="1.0708" />
+      <inertia
+        ixx="0.00091727"
+        ixy="-2.0918E-15"
+        ixz="-2.0512E-15"
+        iyy="0.00091727"
+        iyz="-2.2276E-15"
+        izz="0.0017177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <cylinder length="0.055" radius="0.07"/>
+    </geometry>
+    </collision>
+  </link>
+  
+        <joint name="front_right_wheel_joint" type="continuous">
+            <origin 
+      xyz="0.11621 -0.19638 -0.03025"
+                rpy="-1.5708 0 0" />
+            <parent link="base_link" />
+            <child link="front_right_wheel_link" />
+            <axis xyz="0 0 1" />
+            <dynamics damping="0" friction="0" />
+            <!-- <limit effort="100.0" velocity="10.0"/> -->
+        </joint>
+
+
+         </xacro:macro>
+         <xacro:macro name="wheel3">
+        <link name="back_left_wheel_link">
+            <inertial>
+      <origin
+        xyz="-4.2193E-12 3.736E-12 0.028039"
+        rpy="0 0 0" />
+      <mass
+        value="1.0708" />
+      <inertia
+        ixx="0.00091727"
+        ixy="2.5637E-15"
+        ixz="2.3419E-15"
+        iyy="0.00091727"
+        iyz="2.1646E-15"
+        izz="0.0017177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <cylinder length="0.055" radius="0.07"/>
+    </geometry>
+    </collision>
+  </link>
+
+        <joint name="back_left_wheel_joint" type="continuous">
+            <origin 
+      xyz="-0.14879 0.19638 -0.03025"
+                rpy="-1.5708 0 0" />
+            <parent link="base_link" />
+            <child link="back_left_wheel_link" />
+            <axis xyz="0 0 1" />
+            <dynamics damping="0" friction="0" />
+            <!-- <limit effort="100.0" velocity="10.0"/> -->
+        </joint>
+
+
+
+         </xacro:macro>
+         <xacro:macro name="wheel4">
+         
+        <link name="back_right_wheel_link">
+            <inertial>
+      <origin
+        xyz="-3.0896E-12 5.026E-12 -0.028039"
+        rpy="0 0 0" />
+      <mass
+        value="1.0708" />
+      <inertia
+        ixx="0.00091727"
+        ixy="4.0607E-15"
+        ixz="1.9941E-15"
+        iyy="0.00091727"
+        iyz="2.4164E-15"
+        izz="0.0017177" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+        <cylinder length="0.055" radius="0.07"/>
+    </geometry>
+    </collision>
+  </link>
+  
+  
+        <joint name="back_right_wheel_joint" type="continuous">
+            <origin 
+      xyz="-0.14879 -0.19638 -0.03025"
+               rpy="-1.5708 0 0" />
+            <parent link="base_link" />
+            <child link="back_right_wheel_link" />
+            <axis xyz="0 0 1" />
+            <dynamics damping="0" friction="0" />
+            <!-- <limit effort="100.0" velocity="10.0"/> -->
+        </joint>
+
+
+
+
+    </xacro:macro>
+
+</robot>

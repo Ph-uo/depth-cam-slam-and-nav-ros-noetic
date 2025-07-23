@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="kinect">
+
+
+<link
+    name="kinect_xbox360">
+    <inertial>
+      <origin
+        xyz="-0.0431869654249812 -0.0459492667909682 -0.00495342962336403"
+        rpy="0 0 0" />
+      <mass
+        value="0.658662567230623" />
+      <inertia
+        ixx="0.00298605244222201"
+        ixy="-2.21793056815642E-07"
+        ixz="-9.37989680435827E-07"
+        iyy="0.00311171463528523"
+        iyz="-1.50993005437606E-08"
+        izz="0.000269654830973024" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/kinect_xbox360.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.494117647058824 0.494117647058824 0.494117647058824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/kinect_xbox360.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="kinect_xbox360_joint" type="fixed">
+     <origin xyz="0.18 0 0.228"
+             rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="kinect_xbox360" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+
+
+  </xacro:macro>
+
+</robot>

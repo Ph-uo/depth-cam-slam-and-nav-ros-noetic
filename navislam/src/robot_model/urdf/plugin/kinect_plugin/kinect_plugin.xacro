@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<robot>
+
+
+ <gazebo reference="kinect_xbox360">
+  <sensor name="kinect_xbox360_camera" type="depth">
+    <update_rate>20</update_rate>
+    <camera>
+      <horizontal_fov>1.5708</horizontal_fov>
+      <image>
+        <width>1080</width>  <!-- was 640x480-->
+        <height>720</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.05</near>
+        <far>10</far>
+      </clip>
+    </camera>
+    <plugin name="kinect_xbox360_controller" filename="libgazebo_ros_openni_kinect.so">
+      <baseline>0.2</baseline>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>2.0</updateRate>
+      <cameraName>kinect_xbox360_ir</cameraName>
+   
+      <imageTopicName>/camera/rgb/image_raw</imageTopicName>
+      <cameraInfoTopicName>/camera/rgb/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/camera/depth_registered/image_raw</depthImageInfoTopicName>
+      <pointCloudTopicName>/kinect_xbox360/depth/points</pointCloudTopicName> 
+      
+ <!-- <imageTopicName>/kinect_xbox360/color/image_raw</imageTopicName>
+      <cameraInfoTopicName>/kinect_xbox360/color/camera_info</cameraInfoTopicName>
+      <depthImageTopicName>/kinect_xbox360/depth/image_raw</depthImageTopicName>
+      <depthImageInfoTopicName>/kinect_xbox360/depth/camera_info</depthImageInfoTopicName>
+      <pointCloudTopicName>/kinect_xbox360/depth/points</pointCloudTopicName> -->
+
+      
+      <frameName>kinect</frameName>
+      <pointCloudCutoff>0.5</pointCloudCutoff>
+      <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+      <distortionK1>0.00000001</distortionK1>
+      <distortionK2>0.00000001</distortionK2>
+      <distortionK3>0.00000001</distortionK3>
+      <distortionT1>0.00000001</distortionT1>
+      <distortionT2>0.00000001</distortionT2>
+      <CxPrime>0</CxPrime>
+      <Cx>0</Cx>
+      <Cy>0</Cy>
+      <focalLength>0</focalLength>
+      <hackBaseline>0</hackBaseline>
+    </plugin>
+  </sensor>
+</gazebo>
+
+
+
+</robot>

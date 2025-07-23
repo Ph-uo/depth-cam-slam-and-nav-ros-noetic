@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- Arguments: Các tham số đầu vào -->
+  <arg name="odom_frame_id"   default="odom" />         <!-- Khung tọa độ odometry của robot -->
+  <arg name="base_frame_id"   default="base_link" />    <!-- Khung tọa độ của cơ sở robot -->
+  <arg name="global_frame_id" default="map" />           <!-- Khung tọa độ toàn cục (bản đồ) -->
+  <arg name="cmd_vel_topic"   default="/cmd_vel" />      <!-- Chủ đề để gửi lệnh điều khiển vận tốc (velocity command) -->
+  <arg name="odom_topic"      default="/odom" />         <!-- Chủ đề chứa dữ liệu odometry (dự đoán vị trí robot) -->
+  <arg name="laser_topic"     default="/scan" />         <!-- Chủ đề chứa dữ liệu cảm biến laser (LIDAR) -->
+  <arg name="move_forward_only" default="false"/>        <!-- Tham số này dùng để quyết định xem robot có chỉ di chuyển về phía trước hay không -->
+
+  <!-- move_base: Node điều khiển di chuyển của robot -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    
+    <!-- Chỉ định planner (lập kế hoạch đường đi) sẽ sử dụng trong move_base -->
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    
+    <!-- Cấu hình các tham số cho costmap (bản đồ chi phí) -->
+    <rosparam file="$(find navigation_pkg)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find navigation_pkg)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find navigation_pkg)/params/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find navigation_pkg)/params/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find navigation_pkg)/params/move_base_params.yaml" command="load" />
+    <rosparam file="$(find navigation_pkg)/params/global_planner_params.yaml" command="load" />
+    <!-- Commenting Global planner makes A* works -->
+    <rosparam file="$(find navigation_pkg)/params/dwa_local_planner_params.yaml" command="load" />
+        
+    <!-- Điều chỉnh tốc độ robot nếu chỉ di chuyển về phía trước -->
+    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+    
+    <!-- Cấu hình các khung tọa độ của costmap và planner -->
+    <param name= "global_costmap/global_frame" value="$(arg global_frame_id)"/>
+    <param name= "global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+    <param name= "local_costmap/global_frame" value="$(arg odom_frame_id)"/>
+    <param name= "local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
+    <param name= "DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
+    
+    <!-- Chuyển tiếp (remap) chủ đề -->
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+    <remap from="scan" to="$(arg laser_topic)"/>
+    <remap from="/map" to="/rtabmap/grid_map" />
+    
+  </node>
+</launch>
+

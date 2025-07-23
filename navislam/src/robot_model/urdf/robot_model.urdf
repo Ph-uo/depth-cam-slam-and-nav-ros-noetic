@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robot_model">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00129317332165214 0.0633151057935385 0.20967680234071"
+        rpy="0 0 0" />
+      <mass
+        value="2.46400788552371" />
+      <inertia
+        ixx="0.0156552623977409"
+        ixy="6.13168728460666E-07"
+        ixz="4.97876214864074E-08"
+        iyy="0.0128972120652041"
+        iyz="-6.1948976953821E-06"
+        izz="0.0259906671046005" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="banh_1">
+    <inertial>
+      <origin
+        xyz="0.00478560391495947 4.00242339271273E-12 -4.02800015564253E-12"
+        rpy="0 0 0" />
+      <mass
+        value="1.070800460582" />
+      <inertia
+        ixx="0.00171765472312292"
+        ixy="-2.2673349904122E-15"
+        ixz="-2.19745156294512E-15"
+        iyy="0.000917266613126272"
+        iyz="4.62511972586104E-15"
+        izz="0.000917266613128284" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banh1"
+    type="continuous">
+    <origin
+      xyz="0.17 0.120737224153524 0.0679802778819374"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_1" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="banh_2">
+    <inertial>
+      <origin
+        xyz="-0.00448087120122588 4.54719595310848E-12 3.64067109792643E-12"
+        rpy="0 0 0" />
+      <mass
+        value="1.07080046058213" />
+      <inertia
+        ixx="0.00171765472312301"
+        ixy="2.24136253495583E-15"
+        ixz="-2.09589478662777E-15"
+        iyy="0.000917266613123066"
+        iyz="-1.18490057659235E-15"
+        izz="0.000917266613131581" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banh2"
+    type="continuous">
+    <origin
+      xyz="0.18 -0.134262775846476 0.0679802778819374"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_2" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="banh_3">
+    <inertial>
+      <origin
+        xyz="-0.00380407176111935 2.39230857346229E-12 -5.81446002456687E-12"
+        rpy="0 0 0" />
+      <mass
+        value="1.070800460583" />
+      <inertia
+        ixx="0.00171765472312322"
+        ixy="-1.64665403292451E-15"
+        ixz="-2.65831930927722E-15"
+        iyy="0.000917266613123829"
+        iyz="7.37123130673403E-16"
+        izz="0.000917266613131039" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banh3"
+    type="continuous">
+    <origin
+      xyz="-0.17 -0.134262775846476 0.0679802778819374"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_3" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="banh_4">
+    <inertial>
+      <origin
+        xyz="-0.0041033667660848 2.96224241264076E-06 8.17679257636428E-14"
+        rpy="0 0 0" />
+      <mass
+        value="1.0708004605838" />
+      <inertia
+        ixx="0.00171765472233705"
+        ixy="-2.50792265369593E-08"
+        ixz="-1.82117201268443E-15"
+        iyy="0.000917266613913914"
+        iyz="-3.99512264913169E-15"
+        izz="0.000917266613126439" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/banh_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="banh4"
+    type="continuous">
+    <origin
+      xyz="-0.17 0.120737224153524 0.0679802778819374"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="banh_4" />
+    <axis
+      xyz="0.999999999509095 -3.1333831926883E-05 0" />
+  </joint>
+</robot>

@@ -1,0 +1,8 @@
+prefix=/home/rack/ROS_project/navislam2/navislam/install
+
+Name: robot_model
+Description: Description of robot_model
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

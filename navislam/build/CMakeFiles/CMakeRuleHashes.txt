@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+426b838bbaa50916da866df599e41867 /home/rack/ROS_project/navislam2/navislam/devel/include/freenect_camera/FreenectConfig.h
+16e85f5586edebaa318259239de73cba CMakeFiles/clean_test_results
+39ca08b62ac9fdcaa15d1638588c5188 freenect_stack/freenect_camera/CMakeFiles/freenect_camera_gencfg

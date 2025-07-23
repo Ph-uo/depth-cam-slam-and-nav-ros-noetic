@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="base_link">
+    
+
+<link name="odom"/>
+
+<link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00141042804788924 -2.60208521396521E-17 0.0436656554141769"
+        rpy="0 0 0" />
+      <mass
+        value="1.34485321548967" />
+      <inertia
+        ixx="0.00529307431129778"
+        ixy="7.3273392160242E-21"
+        ixz="-2.68332169360804E-21"
+        iyy="0.00795898501592148"
+        iyz="3.40937319669356E-07"
+        izz="0.0115588616354747" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_joint" type="fixed">
+        <origin xyz="0 0 0 " rpy="0.0 0.0 0.0"/>
+        <parent link="odom"/>
+        <child link="base_link"/>
+        <axis xyz="0.0 0.0 0.0"/>
+        <limit lower="0.0" upper="0.0" effort="0.0" velocity="0.0"/>
+    </joint>
+        
+
+
+    </xacro:macro>
+
+</robot>

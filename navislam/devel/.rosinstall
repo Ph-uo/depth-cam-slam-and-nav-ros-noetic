@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/rack/ROS_project/navislam2/navislam/devel/setup.sh

@@ -1,0 +1,11 @@
+<launch>
+  <param
+    name="robot_description"
+    textfile="$(find robot_model)/urdf/robot.urdf.xacro" />
+    
+  <node
+    name="tf_map"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link map 40" />
+</launch>
